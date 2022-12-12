@@ -1,1 +1,40 @@
-<h1>Control Coming soon!</h1>
+<h1>Wikipedia Search Controls</h1>
+<mat-form-field 
+    [formGroup]="searchControls.controlsForm" 
+    ngSubmit="onSubmit()" 
+    class="example-form">
+    <mat-label>Manage YOUR Wikipedia Search Response!</mat-label>
+    <input matInput 
+        placeholder="How many search results (1 - 10)?" 
+        inputType="number" 
+        formControlName="numberOfResults" />
+    <mat-checkbox 
+        class="solo-button"
+        formControlName="title">Title</mat-checkbox>
+    <mat-checkbox 
+        class="solo-button"
+        formControlName="snippet">Snippet</mat-checkbox>
+    <ul>
+        <li>
+            <mat-checkbox formControlName="pageid">PageID #</mat-checkbox>
+        </li> 
+        <li>
+            <mat-checkbox formControlName="size">Size</mat-checkbox>
+        </li>
+        <li>
+            <mat-checkbox formControlName="wordcount">Word Count</mat-checkbox>
+        </li>
+        <li>
+            <mat-checkbox formControlName="timestamp">Timestamp</mat-checkbox>
+        </li>
+    </ul>
+    <button mat-flat-button color="primary"
+        class="button"
+        [disabled]="searchControls.controlsForm.invalid">Submit</button>
+</mat-form-field>
+
+<hr />
+<div>Value: {{ searchControls.controlsForm.value | json }}</div>
+<div>Validation: {{ searchControls.controlsForm.valid }}</div>
+<div>Errors: {{ searchControls.controlsForm.getError | json }}</div>
+<div>Just a Thing: {{ searchControls.controlsForm.valueChanges | async | json }}</div>

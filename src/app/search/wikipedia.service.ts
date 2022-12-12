@@ -15,6 +15,7 @@ interface WikipediaResponse {
       wordcount: number;
       size: number;
       snippet: string;
+      timestamp: string;
     }[]
   };
 }

@@ -1,0 +1,20 @@
+ul {
+    list-style-type: none;
+    margin-top: .75rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+.solo-button {
+    margin-left: 2em;
+    margin-top: 2em;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin-bottom: 20px;
+}

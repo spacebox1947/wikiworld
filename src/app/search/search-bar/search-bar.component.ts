@@ -25,8 +25,6 @@ export class SearchBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm.controls['search'].valueChanges.subscribe((value) => {
-      //console.log(value);
-      //this.currentSearch$ = value;
       this.wikipedia.currentSearch$ = value;
     })
   }

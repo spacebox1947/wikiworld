@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { ControlsService } from 'src/app/controls/controls.service';
 
 @Component({
   selector: 'app-search-results',
@@ -7,13 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SearchResultsComponent implements OnInit {
   @Input() pages: any[] = [];
-  displayedColumns = ['title', 'pageid', 'wordcount', 'snippet'];
+  allDisplayColumnsProperties = ['title', 'pageid', 'wordcount', 'snippet', 'size','timestamp'];
+  displayedColumns = ['title', 'snippet', 'pageid'];
   //public searchResults = [];
   wikiUrlForPageid = "https://en.wikipedia.org/?curid=";
 
-  constructor() { }
+  constructor(public searchControls: ControlsService) { }
 
   ngOnInit(): void {
+    //console.log(this.searchControls.controlsForm.value);
+    this.updateDisplayedColumns();
   }
 
   printPages() {
@@ -24,4 +28,16 @@ export class SearchResultsComponent implements OnInit {
     }
   }
 
+  updateDisplayedColumns() {
+    const newColumns: string[] = [];
+    for (let i = 0; i < this.allDisplayColumnsProperties.length; i++) {
+      if (this.searchControls.controlsForm.get(this.allDisplayColumnsProperties[i])?.value) {
+        /* console.log(this.allDisplayColumnsProperties[i],
+          this.searchControls.controlsForm.get(this.allDisplayColumnsProperties[i])?.value); */
+        newColumns.push(this.allDisplayColumnsProperties[i]);
+      }
+    }
+    console.log(newColumns);
+    this.displayedColumns = newColumns;
+  }
 }

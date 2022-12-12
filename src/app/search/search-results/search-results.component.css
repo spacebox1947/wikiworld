@@ -1,0 +1,50 @@
+.table {
+    width: 100%;
+}
+
+.mat-column-title {
+    border-right: 1px solid currentColor;
+    padding-right: 6px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.mat-column-pageid {
+    padding-left: 8px;
+    padding-right: 4px;
+    text-align: left;
+}
+
+.mat-column-wordcount {
+    padding-left: 8px;
+    padding-right: 4px;
+    text-align: left;
+}
+
+.mat-column-snippet {
+    padding-left: 8px;
+    padding-right: 4px;
+    text-align: left;
+}
+
+.mat-column-timestamp {
+    padding-left: 8px;
+    padding-right: 4px;
+    text-align: left;
+}
+
+.mat-column-size {
+    padding-left: 8px;
+    padding-right: 4px;
+    text-align: left;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+    cursor: pointer;
+}
+
+.mat-row:hover {
+    border: 1px white;
+    border-color: white;
+    border-width: 5px;
+  }
