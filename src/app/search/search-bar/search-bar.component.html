@@ -1,0 +1,31 @@
+<form [formGroup]="searchForm" ngSubmit="onSubmit()">
+    <mat-form-field class="example-form">
+        <mat-label>Search The Wikipedia</mat-label>
+        <input matInput 
+            placeholder="RollerCoaster Tycoon" 
+            inputType="text" 
+            formControlName="search" />
+    <ng-container 
+    *ngIf="searchForm.controls.search.errors &&
+    searchForm.touched &&
+    searchForm.dirty">
+        <div class="help is-danger" *ngIf="searchForm.controls.search.errors?.['required']">
+            <p>Input is required</p>
+        </div>
+        <div class="help is-danger" *ngIf="searchForm.controls.search.errors?.['minlength']">
+            <p>You need {{ searchForm.controls.search.errors['minlength'].requiredLength }} or more characters.</p>
+        </div>
+    </ng-container>
+
+    <button mat-flat-button color="primary"
+        class="button"
+        (click)="onSearchSubmit($event)"
+        [disabled]="searchForm.invalid">Submit</button>
+    </mat-form-field>
+</form>
+
+<!-- <hr />
+<div>Value: {{ searchForm.value | json }}</div>
+<div>Validation: {{ searchForm.valid }}</div>
+<div>Errors: {{ searchForm.controls.search.errors | json }}</div>
+<div>Just a Thing{{ searchForm.valueChanges | async | json }}</div> -->
