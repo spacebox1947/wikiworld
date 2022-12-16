@@ -12,6 +12,7 @@ export class SearchResultsComponent implements OnInit {
   displayedColumns = ['title', 'snippet', 'pageid'];
   //public searchResults = [];
   wikiUrlForPageid = "https://en.wikipedia.org/?curid=";
+  showResults = true;
 
   constructor(public searchControls: ControlsService) { }
 
@@ -37,7 +38,11 @@ export class SearchResultsComponent implements OnInit {
         newColumns.push(this.allDisplayColumnsProperties[i]);
       }
     }
-    console.log(newColumns);
+    //console.log(newColumns);
     this.displayedColumns = newColumns;
+  }
+
+  toggleShowResults() {
+    this.showResults = !this.showResults;
   }
 }

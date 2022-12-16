@@ -16,13 +16,15 @@ import { MatTableModule } from '@angular/material/table'
 
 // needed these two for a SINGLE input form element
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input'
+import { MatInputModule } from '@angular/material/input';
+import { DisplayWikiComponent } from './display-wiki/display-wiki.component'
 
 @NgModule({
   declarations: [
     SearchBarComponent,
     SearchResultsComponent,
-    SearchHomeComponent
+    SearchHomeComponent,
+    DisplayWikiComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,9 @@
+<div class="container">
+    <div>
+        <h2>{{ wikiTitle }}</h2>
+    </div>
+    <div>
+        <a [href]="wikiUrlForPageid + wikiPageId">View article on Wikipedia</a>
+    </div>
+    <p [innerHTML]="wikiText"></p>
+</div>

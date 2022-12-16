@@ -1,6 +1,12 @@
-<div *ngIf="pages.length != 0">
+<div class="header">
+  <h1>Your search results!</h1>
+  <button mat-stroked-button
+    color="accent"
+    class="button"
+    (click)="toggleShowResults()">Show/Hide Results</button>
+</div>
+<div *ngIf="pages.length != 0 && showResults">
     <table mat-table [dataSource]="pages" class="mat-elevation-z8 table">
-
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
       
@@ -46,7 +52,6 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 </div>
-
 
 <!-- <table>
     <ng-container *ngFor="let page of pages; let i = index">

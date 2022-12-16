@@ -2,4 +2,9 @@
 <app-search-bar (submittedSearch)="getSearchResults()"></app-search-bar>
 <br>
 <br>
-<app-search-results [pages]="pages"></app-search-results>
+<div *ngIf="searched">
+    <app-search-results [pages]="pages"></app-search-results>
+</div>
+<br>
+<br>
+<app-display-wiki></app-display-wiki>

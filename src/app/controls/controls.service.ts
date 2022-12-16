@@ -16,6 +16,7 @@ export class ControlsService {
     timestamp: new FormControl(false),
     snippet: new FormControl({value: true, disabled: true}),
     title: new FormControl({value: true, disabled: true})
+    // technically, neither snippet or title will be sent with the form when emitted
   });
 
   constructor() { }

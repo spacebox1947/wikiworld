@@ -37,5 +37,4 @@ export class SearchBarComponent implements OnInit {
     event.preventDefault();
     this.submittedSearch.emit(this.wikipedia.currentSearch$);
   }
-
 }

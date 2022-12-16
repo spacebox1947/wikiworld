@@ -20,11 +20,18 @@ interface WikipediaResponse {
   };
 }
 
+interface WikipediaPageResponse {
+  parse: {
+    title: string;
+    pageid: number;
+    text: string;
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class WikipediaService {
-
   currentSearch$: any = 'RollerCoaster Tycoon';
 
   constructor(private http: HttpClient) { }
@@ -46,4 +53,23 @@ export class WikipediaService {
     );
   }
 
+  // https://en.wikipedia.org/w/api.php?
+  // action=parse&format=json&page=Pet_door&prop=text&formatversion=2
+  public getPageFromWikipedia() {
+    return this.http.get<WikipediaPageResponse>(
+      'https://en.wikipedia.org/w/api.php?', 
+      {
+        params: {
+          action: 'parse',
+          format: 'json',
+          page: 'Pet_door',
+          prop: 'text',
+          formatversion: '2',
+          origin: '*'
+        }
+      }
+    ).pipe(
+      map(x => x.parse)
+    );
+  }
 }

@@ -9,6 +9,7 @@ import { WikipediaService } from '../wikipedia.service';
 export class SearchHomeComponent implements OnInit {
 
   pages: any[] = [];
+  searched: boolean = false;
 
   constructor(private wikipedia: WikipediaService) { }
 
@@ -19,6 +20,7 @@ export class SearchHomeComponent implements OnInit {
     this.wikipedia.getSearchResultsFromWikipedia().subscribe( (response) => {
       //console.log(response);
       this.pages = response;
+      this.searched = true;
       //console.log(this.pages);
     });
     //this.printPages();
