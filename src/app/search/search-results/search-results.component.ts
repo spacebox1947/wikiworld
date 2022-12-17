@@ -1,32 +1,30 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { ControlsService } from 'src/app/controls/controls.service';
+import { WikipediaService } from '../wikipedia.service';
+import { NavigationService } from '../navigation.service';
 
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.css']
 })
-export class SearchResultsComponent implements OnInit {
-  @Input() pages: any[] = [];
+export class SearchResultsComponent {
   allDisplayColumnsProperties = ['title', 'pageid', 'wordcount', 'snippet', 'size','timestamp'];
   displayedColumns = ['title', 'snippet', 'pageid'];
   //public searchResults = [];
   wikiUrlForPageid = "https://en.wikipedia.org/?curid=";
   showResults = true;
 
-  constructor(public searchControls: ControlsService) { }
+  @Output() displayPage = new EventEmitter<string>;
 
-  ngOnInit(): void {
+  constructor(
+    public searchControls: ControlsService,
+    public wikipedia: WikipediaService,
+    private navigation: NavigationService) { }
+
+  ngOnChanges(): void {
     //console.log(this.searchControls.controlsForm.value);
     this.updateDisplayedColumns();
-  }
-
-  printPages() {
-    if (this.pages.length > 0) {
-      for (let i = 0; i < 10; i++ ) {
-        console.log(this.pages[i].title, this.pages[i].pageid, this.pages[i].wordcount);
-      }
-    }
   }
 
   updateDisplayedColumns() {
@@ -44,5 +42,12 @@ export class SearchResultsComponent implements OnInit {
 
   toggleShowResults() {
     this.showResults = !this.showResults;
+  }
+
+  displayPageTitle(title: any) {
+    console.log(title);
+    // how to route to display wiki page?
+    this.wikipedia.pageSearch$ = title;
+    this.navigation.goToDisplay();
   }
 }

@@ -56,5 +56,6 @@
 }
 
 .button {
-    margin: 0.5rem;
+    margin: 1rem;
+    padding: .25rem;
 }

@@ -1,6 +1,17 @@
-<div class="container">
+<button
+    mat-raised-button
+    color="accent"
+    (click)="togglePageView()"
+    [ngSwitch]="displayAPage">
+    <span *ngSwitchCase="true">Collapse Wiki Page</span>
+    <span *ngSwitchCase="false">
+        Display a Wiki Page
+    </span>
+</button>
+<div class="container" *ngIf="displayAPage">
     <div>
         <h2>{{ wikiTitle }}</h2>
+        
     </div>
     <div>
         <a [href]="wikiUrlForPageid + wikiPageId">View article on Wikipedia</a>

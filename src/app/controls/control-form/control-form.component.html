@@ -1,11 +1,12 @@
-<h1>Wikipedia Search Controls</h1>
+<h1>Wikipedia Bulk Search Controls</h1>
+<p>Manage Bulk Search query</p>
 <mat-form-field 
     [formGroup]="searchControls.controlsForm" 
     ngSubmit="onSubmit()" 
     class="example-form">
-    <mat-label>Manage YOUR Wikipedia Search Response!</mat-label>
+    <mat-label>How many search results (1 - 50)</mat-label>
     <input matInput 
-        placeholder="How many search results (1 - 10)?" 
+        placeholder="How many search results (1 - 50)?" 
         inputType="number" 
         formControlName="numberOfResults" />
     <mat-checkbox 
@@ -30,11 +31,12 @@
     </ul>
     <button mat-flat-button color="primary"
         class="button"
+        
         [disabled]="searchControls.controlsForm.invalid">Submit</button>
 </mat-form-field>
 
-<hr />
+<!-- <hr />
 <div>Value: {{ searchControls.controlsForm.value | json }}</div>
 <div>Validation: {{ searchControls.controlsForm.valid }}</div>
 <div>Errors: {{ searchControls.controlsForm.getError | json }}</div>
-<div>Just a Thing: {{ searchControls.controlsForm.valueChanges | async | json }}</div>
+<div>Just a Thing: {{ searchControls.controlsForm.valueChanges | async | json }}</div> -->

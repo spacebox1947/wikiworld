@@ -11,6 +11,7 @@ export class DisplayWikiComponent implements OnInit {
   wikiTitle: string = '';
   wikiPageId: number = 0;
   wikiUrlForPageid = "https://en.wikipedia.org/?curid=";
+  displayAPage = true;
 
   constructor(private wikipedia: WikipediaService) { }
 
@@ -19,7 +20,20 @@ export class DisplayWikiComponent implements OnInit {
       this.wikiText = text;
       this.wikiTitle = title;
       this.wikiPageId = pageid;
-    })
+    });
+  }
+
+  ngOnChanges() {
+    this.wikipedia.getPageFromWikipedia().subscribe(({title, pageid, text}) => {
+      this.wikiText = text;
+      this.wikiTitle = title;
+      this.wikiPageId = pageid;
+    });
+  }
+
+  togglePageView() {
+    this.displayAPage = !this.displayAPage;
+    //this.ngOnInit();
   }
 
 }

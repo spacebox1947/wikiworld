@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { WikipediaService } from 'src/app/search/wikipedia.service';
 import { ControlsService } from '../controls.service';
+
 
 @Component({
   selector: 'app-control-form',
@@ -9,16 +10,13 @@ import { ControlsService } from '../controls.service';
 })
 export class ControlFormComponent implements OnInit {
 
-  @Output() searchControlForm: EventEmitter<FormGroup> = new EventEmitter();
-
-  constructor(public searchControls: ControlsService) { }
+  constructor(
+    public searchControls: ControlsService,
+    public wikipedia: WikipediaService) { }
 
   ngOnInit(): void {
-  }
-
-  onControlSubmit(event: any) {
-    //event.preventDefault();
-    //this.searchControlForm.emit(this.searchControls.controlsForm);
-    //console.log(this.searchControls.controlsForm.value);
+    this.searchControls.controlsForm.controls['numberOfResults'].valueChanges.subscribe((value) => {
+      this.wikipedia.srlimit$ = value;
+    })
   }
 }
