@@ -12,4 +12,8 @@ export class NavigationService {
     this.router.navigateByUrl(`${this.router.url}/display`);
   }
 
+  goToResultsList() {
+    this.router.navigate(['/search']);
+  }
+
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { WikipediaService } from '../wikipedia.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BulkSearchService } from '../bulk-search.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -8,29 +9,29 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
-  searchForm = new FormGroup({
+/*   searchForm = new FormGroup({
     search: new FormControl('', [
       Validators.required,
       Validators.minLength(3)
     ])
-  });
+  }); */
 
   @Output() submittedSearch = new EventEmitter<string>();
 
   pages: any[] = [];
-  //currentSearch$: any;
 
   constructor(
-    private wikipedia: WikipediaService) { }
+    public wikipedia: WikipediaService,
+    public bulkSearch: BulkSearchService) { }
 
   ngOnInit(): void {
-    this.searchForm.controls['search'].valueChanges.subscribe((value) => {
+    this.bulkSearch.searchForm.controls['search'].valueChanges.subscribe((value) => {
       this.wikipedia.currentSearch$ = value;
     })
   }
 
   get search() {
-    return this.searchForm.value.search;
+    return this.bulkSearch.searchForm.value.search;
   }
 
   onSearchSubmit(event: any) {

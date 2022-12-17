@@ -36,13 +36,13 @@ interface WikipediaPageResponse {
 export class WikipediaService {
   currentSearch$: any = 'RollerCoaster Tycoon';
   wikiPage: any[] = [];
-  srlimit$: number = 2;
+  srlimit$: number = 10;
   pageSearch$: any = 'RollerCoaster Tycoon';
-  //searched: boolean = false;
+  searched: boolean = false;
 
   constructor(
     private http: HttpClient,
-    private controlForm: ControlsService) {
+    public controlForm: ControlsService) {
       //this.srlimit$ = this.controlForm.get()
     }
 
@@ -63,7 +63,7 @@ export class WikipediaService {
       map(x => x.query?.search)     
     ).subscribe((response) => {
       this.wikiPage = response;
-      //this.searched = true;
+      this.searched = true;
     });
   }
 

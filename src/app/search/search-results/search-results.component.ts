@@ -8,9 +8,9 @@ import { NavigationService } from '../navigation.service';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.css']
 })
-export class SearchResultsComponent {
+export class SearchResultsComponent implements OnInit {
   allDisplayColumnsProperties = ['title', 'pageid', 'wordcount', 'snippet', 'size','timestamp'];
-  displayedColumns = ['title', 'snippet', 'pageid'];
+  displayedColumns = ['title', 'pageid', 'snippet', 'load'];
   //public searchResults = [];
   wikiUrlForPageid = "https://en.wikipedia.org/?curid=";
   showResults = true;
@@ -20,10 +20,14 @@ export class SearchResultsComponent {
   constructor(
     public searchControls: ControlsService,
     public wikipedia: WikipediaService,
-    private navigation: NavigationService) { }
+    private navigation: NavigationService) {}
 
-  ngOnChanges(): void {
+  ngOnInit(): void {
     //console.log(this.searchControls.controlsForm.value);
+    this.updateDisplayedColumns();
+  }
+
+  ngOnChanges() {
     this.updateDisplayedColumns();
   }
 
@@ -36,8 +40,8 @@ export class SearchResultsComponent {
         newColumns.push(this.allDisplayColumnsProperties[i]);
       }
     }
-    //console.log(newColumns);
     this.displayedColumns = newColumns;
+    this.displayedColumns.push('load');
   }
 
   toggleShowResults() {

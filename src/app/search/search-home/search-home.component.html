@@ -1,9 +1,8 @@
 <h1>Bulk Search Wikipedia for Facts and Stuff</h1>
-<p>Generates a list of search results. You can click one to view it on Wikipedia. Results are not persisten!</p>
-{{searched}}
+<p>Generates a list of search results. You can click one to view it on Wikipedia. Results are not persistent!</p>
 <app-search-bar (submittedSearch)="getSearchResults()"></app-search-bar>
 <br>
 <br>
-<div *ngIf="searched">
+<div *ngIf="wikipedia.searched">
     <app-search-results></app-search-results>
 </div>

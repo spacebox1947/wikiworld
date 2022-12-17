@@ -13,7 +13,7 @@ export class DisplayWikiComponent implements OnInit {
   wikiUrlForPageid = "https://en.wikipedia.org/?curid=";
   displayAPage = true;
 
-  constructor(private wikipedia: WikipediaService) { }
+  constructor(public wikipedia: WikipediaService) { }
 
   ngOnInit(): void {
     this.wikipedia.getPageFromWikipedia().subscribe(({title, pageid, text}) => {
